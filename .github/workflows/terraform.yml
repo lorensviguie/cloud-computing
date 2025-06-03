@@ -27,19 +27,8 @@ jobs:
         working-directory: tp1
 
       - name: Terraform Plan
+        if: github.ref == 'refs/heads/main'
         run: terraform plan -out=tfplan \
-          -var="subscription=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
-          -var="resource_group_name=${{ secrets.RESOURCE_GROUP_NAME }}" \
-          -var="location=westeurope" \
-          -var='vnet_name=vnetcloud-tp1weu001' \
-          -var='vnet_address_space=["10.0.0.0/16"]' \
-          -var='subnet_name=subnetcloud-tp1weu001' \
-          -var='subnet_address_prefixes=["10.0.1.0/24"]' \
-          -var='nic_name=cloud-tp1weu001NIC' \
-          -var='availability_set_name=cloud-tp1weu001AS' \
-          -var='vm_name=cloud-tp1weu001' \
-          -var='admin_username=${{ secrets.ADMIN_USERNAME }}' \
-          -var='admin_password=${{ secrets.ADMIN_PASSWORD }}'
         working-directory: tp1
 
       - name: Terraform Apply
