@@ -3,7 +3,7 @@ name: Terraform Deploy
 on:
   push:
     branches:
-      - main  # ou ta branche cible
+      - main
 
 jobs:
   terraform:
@@ -24,10 +24,13 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: tp1
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
+        working-directory: tp1
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve tfplan
+        working-directory: tp1
