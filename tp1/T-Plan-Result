@@ -1,0 +1,133 @@
+Terraform used the selected providers to generate the following execution plan. Resource
+actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_availability_set.my_avset will be created
+  + resource "azurerm_availability_set" "my_avset" {
+      + id                           = (known after apply)
+      + location                     = "westeurope"
+      + managed                      = true
+      + name                         = "cloud-tp1weu001AS"
+      + platform_fault_domain_count  = 3
+      + platform_update_domain_count = 5
+      + resource_group_name          = "rg-cloud-tp1-sandbox2-weu"
+    }
+
+  # azurerm_network_interface.my_nic will be created
+  + resource "azurerm_network_interface" "my_nic" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "westeurope"
+      + mac_address                   = (known after apply)
+      + name                          = "cloud-tp1weu001NIC"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg-cloud-tp1-sandbox2-weu"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "cloud-tp1weu001NICConf"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = (known after apply)
+          + private_ip_address_allocation                      = "Dynamic"
+          + private_ip_address_version                         = "IPv4"
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # azurerm_resource_group.my_rg will be created
+  + resource "azurerm_resource_group" "my_rg" {
+      + id       = (known after apply)
+      + location = "westeurope"
+      + name     = "rg-cloud-tp1-sandbox2-weu"
+    }
+
+  # azurerm_subnet.my_subnet will be created
+  + resource "azurerm_subnet" "my_subnet" {
+      + address_prefixes                               = [
+          + "10.0.1.0/24",
+        ]
+      + enforce_private_link_endpoint_network_policies = (known after apply)
+      + enforce_private_link_service_network_policies  = (known after apply)
+      + id                                             = (known after apply)
+      + name                                           = "subnetcloud-tp1weu001"
+      + private_endpoint_network_policies_enabled      = (known after apply)
+      + private_link_service_network_policies_enabled  = (known after apply)
+      + resource_group_name                            = "rg-cloud-tp1-sandbox2-weu"
+      + virtual_network_name                           = "vnetcloud-tp1weu001"
+    }
+
+  # azurerm_virtual_machine.my_vm will be created
+  + resource "azurerm_virtual_machine" "my_vm" {
+      + availability_set_id              = (known after apply)
+      + delete_data_disks_on_termination = false
+      + delete_os_disk_on_termination    = true
+      + id                               = (known after apply)
+      + license_type                     = (known after apply)
+      + location                         = "westeurope"
+      + name                             = "cloud-tp1weu001"
+      + network_interface_ids            = (known after apply)
+      + resource_group_name              = "rg-cloud-tp1-sandbox2-weu"
+      + vm_size                          = "Standard_B1s"
+
+      + identity (known after apply)
+
+      + os_profile {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+
+      + os_profile_linux_config {
+          + disable_password_authentication = false
+        }
+
+      + storage_data_disk (known after apply)
+
+      + storage_image_reference {
+            id        = null
+          + offer     = "0001-com-ubuntu-server-focal"
+          + publisher = "Canonical"
+          + sku       = "20_04-lts-gen2"
+          + version   = "20.04.202209200"
+        }
+
+      + storage_os_disk {
+          + caching                   = "ReadWrite"
+          + create_option             = "FromImage"
+          + disk_size_gb              = (known after apply)
+          + managed_disk_id           = (known after apply)
+          + managed_disk_type         = "Premium_LRS"
+          + name                      = "cloud-tp1weu001OsDisk"
+          + os_type                   = (known after apply)
+          + write_accelerator_enabled = false
+        }
+    }
+
+  # azurerm_virtual_network.my_vnet will be created
+  + resource "azurerm_virtual_network" "my_vnet" {
+      + address_space       = [
+          + "10.0.0.0/16",
+        ]
+      + dns_servers         = (known after apply)
+      + guid                = (known after apply)
+      + id                  = (known after apply)
+      + location            = "westeurope"
+      + name                = "vnetcloud-tp1weu001"
+      + resource_group_name = "rg-cloud-tp1-sandbox2-weu"
+      + subnet              = (known after apply)
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to
+take exactly these actions if you run "terraform apply" now.
