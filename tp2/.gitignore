@@ -1,0 +1,29 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Local configs
+*.tfvars
+# sensitive variables
+
+# CLI history, local env files
+.env
+.env.local
+
+# Docker
+Dockerfile
+# sauf si on veut versionner Dockerfile, mais on veut le versionner
+# on peut ignorer images locales
+**/images/
+
+# IDE
+.vscode/
+.idea/
